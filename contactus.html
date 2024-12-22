@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stan's Child - Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 10vh;
+        }
+
+        header {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #6a0dad;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #4b0082;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+    <!-- Include EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init(service_hufdb6b);
+        })();
+    </script>
+<body>
+    <header>  
+        <h1><img src="stanschild-high-resolution-logo-transparent (2).png" alt="Logo" style="width: 150px; vertical-align: middle;">STANSCHILD PTY(LTD)</h1>
+        <nav style="background-color: #f3f1f5; padding: 10px 0; text-align: center;">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <h2>Contact Us</h2>
+        <button class="button" onclick="alert('Cell Number: 0683714390')">Cell Number</button>
+        <button class="button" onclick="alert('Email: stanleypule40@gmail.com')">Email</button>
+       <!-- <button class="button" onclick="openModal()">Request a Call Back</button>--> 
+    </main>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Request a Call Back</h2>
+            <form id="callbackForm">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <button type="submit" class="button">Submit</button>
+            </form> 
+        </div> 
+    </div> 
+    <footer>
+        <!--p>&copy; STANSCHILD.Reg No: 2023/731226/07.</!--p -->
+    </footer>
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        document.getElementById("callbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+
+            // Use EmailJS to send the form data
+            emailjs.send( service_hufdb6b, template_f3lxchh, {
+                phone: phone,
+                email: email
+            })
+            .then(function(response) {
+                alert("Callback request sent successfully!");
+                closeModal();
+            }, function(error) {
+                alert("Failed to send callback request. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>
